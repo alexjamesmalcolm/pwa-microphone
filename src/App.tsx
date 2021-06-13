@@ -1,5 +1,17 @@
+import { AudioAnalyzer } from "./AudioAnalyzer";
+import { useMicrophone } from "./useMicrophone";
+
 const App = () => {
-  return <p>App</p>
+  const { audio, connect, disconnect } = useMicrophone();
+  return (
+    <div>
+      <div>
+        {!audio && <button onClick={connect}>Connect</button>}
+        {audio && <button onClick={disconnect}>Disconnect</button>}
+      </div>
+      <div>{audio && <AudioAnalyzer audio={audio} />}</div>
+    </div>
+  );
 };
 
 export default App;
